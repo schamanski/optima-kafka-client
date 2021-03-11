@@ -6,15 +6,6 @@ import sys
 import json
 import pprint
 
-def forgiving_json_deserializer(v):
-    if v is None:
-        return
-    try:
-        return json.loads(v.decode('utf-8'))
-    except json.decoder.JSONDecodeError:
-        log.exception('Unable to decode: %s', v)
-        return None
-
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         raise ValueError('Usage: optima-example-consumer.py host port topic')
